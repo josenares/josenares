@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  juice-shop:
+    image: bkimminich/juice-shop:latest
+    container_name: juice-shop-qa-env
+    ports:
+      - "3000:3000"
+    restart: always
+    environment:
+      - NODE_ENV=test  # Configuración óptima para ambientes de prueba
