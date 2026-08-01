@@ -1,0 +1,52 @@
+name: Automated E2E & Security Regression Suite
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  test:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    services:
+      # Ephemeral Docker container running Juice Shop for the test run
+      juice-shop:
+        image: bkimminich/juice-shop:latest
+        ports:
+          - 3000:3000
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers with Dependencies
+        run: npx playwright install --with-deps chromium
+
+      - name: Wait for Juice Shop Container Health
+        run: npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Execute Playwright Regression Suite
+        run: npx playwright test
+        env:
+          BASE_URL: http://localhost:3000
+
+      - name: Upload Test Report Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-execution-report
+          path: playwright-report/
+          retention-days: 14
