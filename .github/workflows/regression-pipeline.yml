@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: latest
           cache: 'npm'
-          cache-dependency-path: ${{ github.workspace }}/01-juice_shop/package-lock.json
+          cache-dependency-path: ${{ github.workspace }}/01_juice-shop/package-lock.json
 
       - name: Install Dependencies
         run: npm ci
