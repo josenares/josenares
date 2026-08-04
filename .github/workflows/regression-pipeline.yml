@@ -12,13 +12,13 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
-  # Set default execution directory for ALL run steps to the subdirectory
-  defaults:
+    # Set default execution directory for ALL run steps to the subdirectory
+    defaults:
       run:
         working-directory: 01_juice-shop
 
     services:
-      # Ephemeral Docker container running Juice Shop for the test run
+    # Ephemeral Docker container running Juice Shop for the test run
       juice-shop:
         image: bkimminich/juice-shop:latest
         ports:
