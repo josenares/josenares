@@ -28,7 +28,6 @@ jobs:
         with:
           node-version: latest
           cache: 'npm'
-          cache-dependency-path: 'josenares/01_juice-shop/package-lock.json'
 
       - name: Install Dependencies
         run: npm ci
