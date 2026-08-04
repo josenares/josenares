@@ -28,10 +28,10 @@ jobs:
         with:
           node-version: latest
           cache: 'npm'
-          cache-dependency-path: ${{ github.workspace }}/01_juice-shop/package-lock.json
+          cache-dependency-path: '${{ github.workspace }}/01_juice-shop/package-lock.json'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install Playwright Browsers with Dependencies
         run: npx playwright install --with-deps chromium
