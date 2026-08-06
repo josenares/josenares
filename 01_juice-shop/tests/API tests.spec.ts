@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { Data_Dictionary } from '../Test_data/Page Object Definition';
+import { Data_Dictionary } from 'Test_data/Page Object Definition';
 
 test('Log in', async ({ request,page }) => {
     const driver= new Data_Dictionary(page);
