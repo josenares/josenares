@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: playwright-execution-report
-          path: playwright-report/
+          path: 01_juice-shop/playwright-report
           retention-days: 14
 
       - name: Show Web Report
