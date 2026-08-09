@@ -58,4 +58,4 @@ jobs:
           retention-days: 14
 
       - name: Show Web Report
-        run: npx playwright show-report
+        run: npx playwright show-report --no-server
