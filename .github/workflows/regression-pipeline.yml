@@ -56,6 +56,3 @@ jobs:
           name: playwright-execution-report
           path: 01_juice-shop/playwright-report
           retention-days: 14
-
-      - name: Show Web Report
-        run: npx playwright show-report --no-server
