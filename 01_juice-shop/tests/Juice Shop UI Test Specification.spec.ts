@@ -11,10 +11,10 @@ import { Data_Dictionary } from '../Test_data/Page Object Definition';
 //USER REGISTRATION //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Verify the user can register a new user into the system.
-test('Register a new user', async ({ page }) => {
+test('Register a new user', async ({ page, request }) => {
   
   //Create page object
-  const driver= new Data_Dictionary(page);
+  const driver= new Data_Dictionary(page, request);
   
   //ALWAYS EXECUTE THIS FUNCTION BEFORE TEST.
   await Dismiss_Initial_Dialog_Box(page);
@@ -31,8 +31,8 @@ test('Register a new user', async ({ page }) => {
 
 //Verify the user can log into the system.
 //Expects: Login is allowed. User preferences and settings are recovered.
-test('KAN-12:[Authentication] Successful Authentication with Valid Credentials', async ({ page }) => {
-  const driver= new Data_Dictionary(page);
+test('KAN-12:[Authentication] Successful Authentication with Valid Credentials', async ({ page, request }) => {
+  const driver= new Data_Dictionary(page, request);
   let step_counter=0
 
   
@@ -83,8 +83,8 @@ test('KAN-12:[Authentication] Successful Authentication with Valid Credentials',
 
 //Verify the user can log out the system. 
 //Expects: User preferences/ settings should be hidden.
-test('KAN-13:[Authentication]: User Account Logout and Session Invalidation', async ({ page }) => {
-  const driver= new Data_Dictionary(page);
+test('KAN-13:[Authentication]: User Account Logout and Session Invalidation', async ({ page, request }) => {
+  const driver= new Data_Dictionary(page, request);
   let step_counter=0
   driver.login(false)
   
@@ -112,8 +112,8 @@ test('KAN-13:[Authentication]: User Account Logout and Session Invalidation', as
 
 //Verify the user does not authorize login when username is correct but password is null
 //Expects: Log In button is disabled.
-test('Login fails when username is correct but password is null', async ({ page }) => {
-  const driver= new Data_Dictionary(page);
+test('Login fails when username is correct but password is null', async ({ page, request }) => {
+  const driver= new Data_Dictionary(page, request);
 
   //ALWAYS EXECUTE THIS FUNCTION BEFORE TEST.
   await Dismiss_Initial_Dialog_Box(page);
@@ -132,8 +132,8 @@ test('Login fails when username is correct but password is null', async ({ page 
 
 //Verify the user does not authorize login when username is correct but password is null
 //Expects: Log In button is disabled.
-test('KAN-14: [Authentication] Authentication Attempt with Unregistered Email', async ({ page }) => {
-  const driver= new Data_Dictionary(page);
+test('KAN-14: [Authentication] Authentication Attempt with Unregistered Email', async ({ page, request }) => {
+  const driver= new Data_Dictionary(page, request);
   let step_counter=0;
 
   const user_info = await driver.get_LoginInfo();
@@ -194,8 +194,8 @@ test('KAN-14: [Authentication] Authentication Attempt with Unregistered Email', 
 
 //Verify the user does not authorize login when username is correct but password is wrong
 //Expects: Log In button is enabled AND Login is not allowed.
-test('KAN-15: [Authentication] Authentication Attempt with Incorrect Password', async ({ page }) => {
-  const driver= new Data_Dictionary(page);
+test('KAN-15: [Authentication] Authentication Attempt with Incorrect Password', async ({ page, request }) => {
+  const driver= new Data_Dictionary(page, request);
   let step_counter=0;
     //Define correct username and WRONG password.
   const user_info = await driver.get_LoginInfo();
@@ -304,9 +304,9 @@ test('KAN-15: [Authentication] Authentication Attempt with Incorrect Password', 
 
 //Verify the user does not authorize login when no data is given
 //Expects: Log In button is disabled.
-test('KAN-16: [Authentication] Empty Form Submission (UI Field Validation)', async ({ page }) => {
+test('KAN-16: [Authentication] Empty Form Submission (UI Field Validation)', async ({ page, request }) => {
 
-  const driver= new Data_Dictionary(page);
+  const driver= new Data_Dictionary(page, request);
   let step_counter=0
 
   await test.step((++step_counter).toString()+'. Navigate to the application login page.', async () => {
@@ -337,9 +337,9 @@ test('KAN-16: [Authentication] Empty Form Submission (UI Field Validation)', asy
 
 //Verify the user does not authorize login when no data is given
 //Expects: Log In button is disabled.
-test('KAN-19: [Authentication] Post-Logout Browser History Back-Button Invalidation', async ({ page }) => {
+test('KAN-19: [Authentication] Post-Logout Browser History Back-Button Invalidation', async ({ page, request }) => {
 
-  const driver= new Data_Dictionary(page);
+  const driver= new Data_Dictionary(page, request);
   let step_counter=0;
 
 
@@ -367,9 +367,9 @@ test('KAN-19: [Authentication] Post-Logout Browser History Back-Button Invalidat
 
 });
 
-test('KAN-20: [Authentication] Local Storage Deletion Forceful Disconnect', async ({ page, context }) => {
+test('KAN-20: [Authentication] Local Storage Deletion Forceful Disconnect', async ({ page, context, request }) => {
   
-  const driver= new Data_Dictionary(page);
+  const driver= new Data_Dictionary(page, request);
   let step_counter=0;
   await Dismiss_Initial_Dialog_Box(page);
   await driver.login(false);
@@ -413,8 +413,8 @@ test('KAN-20: [Authentication] Local Storage Deletion Forceful Disconnect', asyn
 
 //Verify the user does not authorize login when username is correct but password is wrong
 //Expects: Log In button is enabled AND Login is not allowed.
-test('Login fails when a password is correct but username is wrong', async ({ page }) => {
-  const driver= new Data_Dictionary(page);
+test('Login fails when a password is correct but username is wrong', async ({ page, request }) => {
+  const driver= new Data_Dictionary(page, request);
 
   //ALWAYS EXECUTE THIS FUNCTION BEFORE TEST.
   await Dismiss_Initial_Dialog_Box(page);
@@ -450,8 +450,8 @@ test('Login fails when a password is correct but username is wrong', async ({ pa
 //Verify the system is able to remember user credentials when user allows it through "Remember Me" checkbox.
 //Expects: System remembers email and password
 
-test('Remember Me functionality', async ({ page }) => {
-  const driver= new Data_Dictionary(page);
+test('Remember Me functionality', async ({ page, request }) => {
+  const driver= new Data_Dictionary(page, request);
 
   //ALWAYS EXECUTE THIS FUNCTION BEFORE TEST.
   await Dismiss_Initial_Dialog_Box(page);
@@ -493,9 +493,9 @@ test('Remember Me functionality', async ({ page }) => {
 //PAYMENT FLOW
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-test('KAN-40: [Payment Flow] Empty Basket Post-Purchase History Traversal Exploitation ', async ({ page }) => {
+test('KAN-40: [Payment Flow] Empty Basket Post-Purchase History Traversal Exploitation ', async ({ page, request }) => {
 
-  const driver= new Data_Dictionary(page);
+  const driver= new Data_Dictionary(page, request);
 
   await test.step('1. Navigate to the basket, click "Checkout", select an existing delivery address, and proceed.', async () => {
       // Dismiss initial welcome banner if present
@@ -557,8 +557,8 @@ test('KAN-40: [Payment Flow] Empty Basket Post-Purchase History Traversal Exploi
 
 });
 
-test('KAN-44: [Payment Flow] Empty Basket Post-Purchase History Traversal Exploitation ', async ({ page }) => {
-    const driver= new Data_Dictionary(page);
+test('KAN-44: [Payment Flow] Empty Basket Post-Purchase History Traversal Exploitation ', async ({ page, request }) => {
+    const driver= new Data_Dictionary(page, request);
 
     await test.step('1. Authenticate and populate active basket', async () => {
       
