@@ -1,4 +1,4 @@
-import {expect} from '@playwright/test';
+import {APIResponse, expect} from '@playwright/test';
 import * as fs from 'fs';
 
 interface UserEntry {
@@ -10,6 +10,7 @@ interface UserEntry {
 
 export class Data_Dictionary{
     page:any
+    request:any
     Account_button:any
     Login_option:any
     Logout_option
@@ -55,8 +56,9 @@ export class Data_Dictionary{
     Delivery_Options_URL
 
 
-  constructor(page:any){
+  constructor(page:any, request:any){
           this.page=page;
+          this.request=request
           this.Account_button = page.getByRole('button', { name: 'Show/hide account menu' });
           this.Login_option = page.getByRole('menuitem', { name: 'Go to login page' });
           this.Logout_option = page.getByRole('menuitem', { name: 'Logout' });
@@ -251,6 +253,7 @@ export class Data_Dictionary{
   //LOGIN: Method to retrieve login info from a random entry from a JSON file. This guarantees login method can be performed successfully.
   async get_LoginInfo(): Promise<string[]> {
     try {
+
       // Read and parse the JSON file
       const data = JSON.parse(fs.readFileSync("../01_juice-shop/Test_data/UsersList.json", 'utf8'));
 
@@ -309,6 +312,73 @@ export class Data_Dictionary{
 
       await this.Account_button.click();
       await this.Logout_option.click();
+  }
+
+  //API############################################################################################################################################
+
+  async API_Register_a_new_user():Promise<APIResponse>{
+    const email = this.generateRandomUser();//USES CUSTOM FUNCTION TO GENERATE A RANDOM EMAIL
+    const password = email.substring(4,12);//USERXYZ12345@TEST.NET => XYZ12345
+    const unique_answer = password;
+
+    
+
+    const response = await this.request.post('http://localhost:3000/api/Users/',
+    
+    {
+        headers:{
+            "Accept":"application/json, text/plain, */*",
+            "Accept-Encoding":"gzip, deflate, br, zstd",
+            "Accept-Language":"es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
+            "Content-Type": "application/json",
+            "Cookie":"language=en; welcomebanner_status=dismiss; continueCode=8JvY7eWQm1aKgMpz42wLj6dKJSjjhnQtXRi8jAbXx9RZlk5PyVENDrB3Onoq; cookieconsent_status=dismiss",
+            "Origin":"http://localhost:3000",
+            "Priority":"u=0",
+            "Referer":"http://localhost:3000/"
+        },
+
+        data:{
+            "email": email,
+            "password": password,
+            "passwordRepeat": password,
+            "securityAnswer": unique_answer,
+            "securityQuestion": {
+                "question": "Mother's maiden name?"
+            }
+        }
+    })
+
+          //CALL FUNCTION TO ADD NEW ENTRIES TO A JSON FILE
+      if(response.status() == 201)
+      this.addEntryToFile(email,password,unique_answer); 
+
+      return response
+  }
+  async API_Login():Promise<APIResponse>{
+   
+    const user_info = await this.get_LoginInfo();
+
+    const response = await this.request.post('http://localhost:3000/rest/user/login',
+
+    {
+    headers:{
+      "Accept":"application/json, text/plain, */*",
+      "Accept-Encoding":"gzip, deflate, br, zstd",
+      "Accept-Language":"es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
+      "Content-Type": "application/json",
+      "Cookie":"language=en; welcomebanner_status=dismiss; continueCode=8JvY7eWQm1aKgMpz42wLj6dKJSjjhnQtXRi8jAbXx9RZlk5PyVENDrB3Onoq; cookieconsent_status=dismiss",
+      "Origin":"http://localhost:3000",
+      "Priority":"u=0",
+      "Referer":"http://localhost:3000/"
+    },
+
+    data:{
+        "email": user_info[0],
+        "password": user_info[1],
+    }
+    })
+
+    return response
   }
 }
 
