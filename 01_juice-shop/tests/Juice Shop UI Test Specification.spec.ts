@@ -1,6 +1,21 @@
 import { test, expect } from '@playwright/test';
 import { Data_Dictionary } from '../Test_data/Page Object Definition';
+import * as fs from 'fs';
+import * as path from 'path';
 
+
+test.beforeAll(async () => {
+  // Runs once before all tests in this file/block per worker
+    
+    const filePath = path.resolve(__dirname, "../Test_data/UsersList.json")
+  // To completely clear the file content:
+    await fs.writeFileSync(filePath, JSON.stringify([]));
+
+    const jsonData = [{'id':1, 'email':'admin@juice-sh.op', 'password': 'admin123', 'uniqueAnswer':''}]
+
+    await fs.writeFileSync(filePath, JSON.stringify(jsonData,null,2),'utf-8')
+
+});
 
 
 //#################################################################################################################################################
