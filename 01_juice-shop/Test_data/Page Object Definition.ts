@@ -109,12 +109,12 @@ export class Data_Dictionary{
   //USER REGISTRATION: Method to create a random string to generate a set of email and password.
   generateRandomUser(): string {
     //Defined format for email string: "USER<random string built by a random 3-uppercased letter substring followed by a random 5-digit number>@TEST.NET"
-    const prefix = "USER";
-    const suffix = "@TEST.NET";
+    const prefix = "user";
+    const suffix = "@test.net";
     
     // Generate 3 random uppercase letters
     const letters = Array.from({ length: 3 }, () => 
-      String.fromCharCode(Math.floor(Math.random() * 25.9) + 65)//There was a possibility to get Math.random()=1 where I could get fromCharCode(91)==> '[' (invalid email char) after using multiply factor of 26. I just decreased that factor a bit, so parameter never reaches 91.
+      String.fromCharCode(Math.floor(Math.random() * 25.9) + 97)//There was a possibility to get Math.random()=1 where I could get fromCharCode(123)==> '[' (invalid email char) after using multiply factor of 26. I just decreased that factor a bit, so parameter never reaches 91.
     ).join('');
     
     // Generate 5 random numeric digits
@@ -224,7 +224,8 @@ export class Data_Dictionary{
   }
 
   //LOGIN: Method to attempt to log in with specified credentials.
-  //Requires a boolean-type parameter: if TRUE is set, login is done with default admin credentials, ELSE it uses a random registered account. 
+  //Requires a boolean-type parameter: if TRUE is set, login is done with default admin credentials, ELSE it uses a random registered account.
+  //Why a boolean is required as function parameter? Some tests require to have already a payment and delivery methods to be defined prior a purchase is completed. In order to skip the processes to define them, an admin account login is done to complete the test case in a straightforward way as both methods are already set.
   async login(admin:boolean):Promise<string>{
     
     //Go to Login page
