@@ -17,7 +17,6 @@ test.beforeAll(async () => {
 
 });
 
-
 //#################################################################################################################################################
 //TEST SPECIFICATION
 //#################################################################################################################################################
@@ -139,6 +138,11 @@ test('Login fails when username is correct but password is null', async ({ page,
   const username=user_info[0];
   const password="";
 
+  //Go to Login page
+  await driver.page.getByRole('button', { name: 'Show/hide account menu' }).click();
+  await driver.page.getByRole('menuitem', { name: 'Go to login page' }).click();
+  await expect (driver.Login_header).toBeVisible();
+
   //Leave both textboxes empty and verify Log In button is unreachable.
   await driver.bad_login(username,password);
 
@@ -191,9 +195,9 @@ test('KAN-14: [Authentication] Authentication Attempt with Unregistered Email', 
 
   });
 
-  await test.step((++step_counter).toString()+'. Enter any registered email and swap between lowercase and uppercase alphabetic characters e.g. “VALIDEMAIL@TEST.NET” → “validemail@test.net”; and click on Log In button.', async () => {
+  await test.step((++step_counter).toString()+'. Enter any registered email and swap between lowercase and uppercase alphabetic characters e.g. “validemail@test.net” → “VALIDEMAIL@TEST.NET”; and click on Log In button.', async () => {
     
-    email=user_info[0].toLocaleLowerCase();
+    email=user_info[0].toLocaleUpperCase();
     await driver.Login_Email_Textbox.fill(email);
     await driver.Login_Password_Textbox.fill(password);
 
@@ -299,15 +303,17 @@ test('KAN-15: [Authentication] Authentication Attempt with Incorrect Password', 
   await test.step((++step_counter).toString()+'. Attempt to log in with a lowercased "correct" password (Note: By default passwords are uppercased)', async () => {
    
     //Define a "CORRECT" password BUT with alphabetic characters lowercased or uppercased. As retrieved passwords ALWAYS are uppercased, then LOWERCASE method is called.
-    password=user_info[1].toLocaleLowerCase();
+    password=user_info[1].toLocaleUpperCase();
     
     await driver.Login_Email_Textbox.fill(email);
     await driver.Login_Password_Textbox.fill(password);
 
     await driver.LogIn_button.click();
-    await expect (driver.Product_Inventory).toBeHidden();
-    await expect (driver.Login_header).toBeVisible();
     await expect (driver.Unsuccessful_login_msg).toBeVisible();
+    await expect (driver.Login_header).toBeVisible();
+    await expect (driver.Product_Inventory).toBeHidden();
+    
+
     
     //Clear textboxes
     await driver.Login_Email_Textbox.clear();
@@ -364,7 +370,11 @@ test('KAN-19: [Authentication] Post-Logout Browser History Back-Button Invalidat
     
     //PERFORM A FEW OPERATIONS WHILE LOGGED IN: ADD PRODUCTS TO BASKET, START A NEW PURCHASE OPERATION, ETC...
     await page.getByLabel('Add to Basket').nth(Math.floor(Math.random()*15*0.99)).click();
+    //CHECK BASKET ITEMS (QUANTITY)
+    await expect(driver.BasketItemsCounter).toContainText("1")
     await page.getByLabel('Add to Basket').nth(Math.floor(Math.random()*15*0.99)).click();
+    //CHECK BASKET ITEMS (QUANTITY)
+    await expect(driver.BasketItemsCounter).toContainText("2")
     await page.getByLabel('Add to Basket').nth(Math.floor(Math.random()*15*0.99)).click();
 
     //CHECK BASKET ITEMS (QUANTITY)
@@ -439,6 +449,11 @@ test('Login fails when a password is correct but username is wrong', async ({ pa
   //Define WRONG username and correct password.
   let email="WrongEmail";
   const password=user_info[1];
+
+  //Go to Login page
+  await driver.page.getByRole('button', { name: 'Show/hide account menu' }).click();
+  await driver.page.getByRole('menuitem', { name: 'Go to login page' }).click();
+  await expect (driver.Login_header).toBeVisible();
 
   //Fill both textboxes with wrong username and correct password and verify Login is unauthorized.
   await driver.bad_login(email,password);
@@ -522,7 +537,9 @@ test('KAN-40: [Payment Flow] Empty Basket Post-Purchase History Traversal Exploi
 
       // Navigate to catalog and add an item to the basket
       await page.getByLabel('Add to Basket').nth(Math.floor(Math.random()*15*0.99)).click();
+        await expect.soft(driver.BasketItemsCounter).toHaveText('1');
       await page.getByLabel('Add to Basket').nth(Math.floor(Math.random()*15*0.99)).click();
+        await expect.soft(driver.BasketItemsCounter).toHaveText('2');
       await page.getByLabel('Add to Basket').nth(Math.floor(Math.random()*15*0.99)).click();
 
       // Verify basket counter updates to 3
