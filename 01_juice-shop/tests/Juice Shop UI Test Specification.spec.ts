@@ -523,7 +523,7 @@ test('Remember Me functionality', async ({ page, request }) => {
 //PAYMENT FLOW
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-test('KAN-40: [Payment Flow] Empty Basket Post-Purchase History Traversal Exploitation ', async ({ page, request }) => {
+test('KAN-40: [Payment Flow] End-to-End Successful Checkout Order Execution (UI Layer)', async ({ page, request }) => {
 
   const driver= new Data_Dictionary(page, request);
 
@@ -605,8 +605,11 @@ test('KAN-44: [Payment Flow] Empty Basket Post-Purchase History Traversal Exploi
 
       // Navigate to catalog and add an item to the basket
       await page.getByLabel('Add to Basket').nth(Math.floor(Math.random()*15*0.99)).click();
+      await expect.soft(driver.BasketItemsCounter).toHaveText('1');
       await page.getByLabel('Add to Basket').nth(Math.floor(Math.random()*15*0.99)).click();
+      await expect.soft(driver.BasketItemsCounter).toHaveText('2');
       await page.getByLabel('Add to Basket').nth(Math.floor(Math.random()*15*0.99)).click();
+      
    
 
       // Verify basket counter updates to 3
