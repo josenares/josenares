@@ -471,7 +471,7 @@ test('Login fails when a password is correct but username is wrong', async ({ pa
   await driver.bad_login(email,password);
 
   //Define a "CORRECT" email BUT with alphabetic characters lowercased or uppercased. As retrieved emails ALWAYS are uppercased, then LOWERCASE method is called.
-  email=user_info[0].toLocaleLowerCase();
+  email=user_info[0].toLocaleUpperCase();
 
   //Fill both textboxes with wrong username and correct password and verify Login is unauthorized.
   await driver.bad_login(email,password);
