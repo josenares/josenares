@@ -25,7 +25,7 @@ test.beforeAll(async () => {
 //USER REGISTRATION //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Verify the user can register a new user into the system.
-test('Register a new user', async ({ page, request }) => {
+test('KAN-25: Register a new user', async ({ page, request }) => {
   
   //Create page object
   const driver= new Data_Dictionary(page, request);
