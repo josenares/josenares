@@ -7,6 +7,8 @@ import * as path from 'path';
 test.beforeAll(async () => {
   // Runs once before all tests in this file/block per worker
     
+  //Reinitialize users list JSON list every test run
+  //Start by adding a default admin user into list.
     const filePath = path.resolve(__dirname, "../Test_data/UsersList.json")
   // To completely clear the file content:
     await fs.writeFileSync(filePath, JSON.stringify([]));
