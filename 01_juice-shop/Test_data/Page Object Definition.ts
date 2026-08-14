@@ -317,44 +317,75 @@ export class Data_Dictionary{
 
   //API############################################################################################################################################
 
+  //FUNCTION TO GENREATE A NEW USER BY SENDING THE REQUIRED DATA: EMAIL, PASSWORD, SECRET QUESTION (FIXED) AND UNIQUE ANSWER
+  //This function generates a random email with the following structure: "user+<random substring of 3 lowercase characters><random subtring of 5 numeric digits>@test.net"
   async API_Register_a_new_user():Promise<APIResponse>{
+
     const email = this.generateRandomUser();//USES CUSTOM FUNCTION TO GENERATE A RANDOM EMAIL
     const password = email.substring(4,12);//USERXYZ12345@TEST.NET => XYZ12345
     const unique_answer = password;
 
+    const response = await this.request.post('http://localhost:3000/api/Users/',
     
+    {
+      headers:{
+        "Accept":"application/json, text/plain, */*",
+        "Accept-Encoding":"gzip, deflate, br, zstd",
+        "Accept-Language":"es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Content-Type": "application/json",
+        "Cookie":"language=en; welcomebanner_status=dismiss; continueCode=8JvY7eWQm1aKgMpz42wLj6dKJSjjhnQtXRi8jAbXx9RZlk5PyVENDrB3Onoq; cookieconsent_status=dismiss",
+        "Origin":"http://localhost:3000",
+        "Priority":"u=0",
+        "Referer":"http://localhost:3000/"
+      },
+
+      data:{
+        "email": email,
+        "password": password,
+        "passwordRepeat": password,
+        "securityAnswer": unique_answer,
+        "securityQuestion": {
+            "question": "Mother's maiden name?"
+        }
+      }
+    })
+
+   //CALL FUNCTION TO ADD NEW ENTRIES TO A JSON FILE
+    if(response.status() == 201)
+    this.addEntryToFile(email,password,unique_answer); 
+
+    return response
+  }
+  async API_Attempt_Register_a_new_user(email:string, password:string, repeatpassword:string, secretquestion:string, unique_answer:string):Promise<APIResponse>{
 
     const response = await this.request.post('http://localhost:3000/api/Users/',
     
     {
-        headers:{
-            "Accept":"application/json, text/plain, */*",
-            "Accept-Encoding":"gzip, deflate, br, zstd",
-            "Accept-Language":"es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
-            "Content-Type": "application/json",
-            "Cookie":"language=en; welcomebanner_status=dismiss; continueCode=8JvY7eWQm1aKgMpz42wLj6dKJSjjhnQtXRi8jAbXx9RZlk5PyVENDrB3Onoq; cookieconsent_status=dismiss",
-            "Origin":"http://localhost:3000",
-            "Priority":"u=0",
-            "Referer":"http://localhost:3000/"
-        },
+      headers:{
+        "Accept":"application/json, text/plain, */*",
+        "Accept-Encoding":"gzip, deflate, br, zstd",
+        "Accept-Language":"es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Content-Type": "application/json",
+        "Cookie":"language=en; welcomebanner_status=dismiss; continueCode=8JvY7eWQm1aKgMpz42wLj6dKJSjjhnQtXRi8jAbXx9RZlk5PyVENDrB3Onoq; cookieconsent_status=dismiss",
+        "Origin":"http://localhost:3000",
+        "Priority":"u=0",
+        "Referer":"http://localhost:3000/"
+      },
 
-        data:{
-            "email": email,
-            "password": password,
-            "passwordRepeat": password,
-            "securityAnswer": unique_answer,
-            "securityQuestion": {
-                "question": "Mother's maiden name?"
-            }
+      data:{
+        "email": email,
+        "password": password,
+        "passwordRepeat": repeatpassword,
+        "securityAnswer": unique_answer,
+        "securityQuestion": {
+            "question": secretquestion
         }
+      }
     })
 
-          //CALL FUNCTION TO ADD NEW ENTRIES TO A JSON FILE
-      if(response.status() == 201)
-      this.addEntryToFile(email,password,unique_answer); 
-
-      return response
+    return response
   }
+  
   async API_Login():Promise<APIResponse>{
    
     const user_info = await this.get_LoginInfo();
@@ -380,6 +411,13 @@ export class Data_Dictionary{
     })
 
     return response
+  }
+
+  async API_Search_for(keyword: string):Promise<APIResponse>{ 
+
+    const response = await this.request.get('http://localhost:3000/rest/products/search?q='+keyword)
+    return response
+
   }
 }
 
