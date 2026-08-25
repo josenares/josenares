@@ -62,7 +62,6 @@ test('Attempt to add a new user: Email is NULL', async ({ page, request}) => {
       "Accept-Encoding":"gzip, deflate, br, zstd",
       "Accept-Language":"es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
       "Content-Type": "application/json",
-      "Cookie":"language=en; welcomebanner_status=dismiss; continueCode=8JvY7eWQm1aKgMpz42wLj6dKJSjjhnQtXRi8jAbXx9RZlk5PyVENDrB3Onoq; cookieconsent_status=dismiss",
       "Origin":"http://localhost:3000",
       "Priority":"u=0",
       "Referer":"http://localhost:3000/"
