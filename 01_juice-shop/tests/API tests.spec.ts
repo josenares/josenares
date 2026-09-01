@@ -34,7 +34,6 @@ test('Register a new user', async ({ page, request}) => {
     expect.soft(( Logup_response).status()).toEqual(201)
 
     const json = await Logup_response.json()
-    console.log(json)
 
     expect.soft(json).toHaveProperty("status","success")
     expect.soft(json).toHaveProperty('data.role','customer')
@@ -586,10 +585,7 @@ test('Log in with wrong credentials', async ({ page, request}) => {
         }
 
     })
-
-    //Print negative response
-    await console.log(response)
-
+  
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
 
@@ -616,9 +612,6 @@ test('Log in with wrong credentials', async ({ page, request}) => {
 
     })
 
-    //Print negative response
-    await console.log(response)
-
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
 
@@ -644,8 +637,6 @@ test('Log in with wrong credentials', async ({ page, request}) => {
 
     })
 
-    //Print negative response
-    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -672,8 +663,6 @@ test('Log in with wrong credentials', async ({ page, request}) => {
 
     })
 
-    //Print negative response
-    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -701,8 +690,6 @@ test('Log in with wrong credentials', async ({ page, request}) => {
 
     })
 
-    //Print negative response
-    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -757,8 +744,6 @@ test('Log in with wrong credentials', async ({ page, request}) => {
 
     })
 
-    //Print negative response
-    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -793,8 +778,6 @@ test("Log in attempting to use SQL injection (Line comments ''--')", async ({ pa
 
     })
 
-    //Print negative response
-    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -832,8 +815,6 @@ test("Log in attempting to use SQL injection (Line comments: USERNAME+''#')", as
 
     })
 
-    //Print negative response
-    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -871,8 +852,6 @@ test("Log in attempting to use SQL injection (Inline comments: USERNAME+''/*')",
 
     })
 
-    //Print negative response
-    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
