@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: 24
           cache: 'npm'
-          cache-dependency-path: 01_juice-shop/package-lock.json
+          cache-dependency-path: 01_juice-shop/Test Automation/package-lock.json
 
       - name: Install Dependencies
         run: npm ci
@@ -54,5 +54,5 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: playwright-execution-report
-          path: 01_juice-shop/playwright-report
+          path: 01_juice-shop/Test Automation/playwright-report/playwright-execution-report.md
           retention-days: 14
