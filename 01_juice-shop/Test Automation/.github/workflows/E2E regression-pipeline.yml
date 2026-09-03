@@ -15,7 +15,7 @@ jobs:
     # Set default execution directory for ALL run steps to the subdirectory
     defaults:
       run:
-        working-directory: 01_juice-shop
+        working-directory: 01_juice-shop/Test Automation
 
     services:
     # Ephemeral Docker container running Juice Shop for the test run
