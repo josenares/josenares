@@ -1,5 +1,13 @@
 <h1>Bug reports</h1>
 
+<br><br>
+
+<p align="center">
+<a target="blank"><img align="center" src="https://raw.githubusercontent.com/DXHeroes/knowledge-base-content/master/files/bug_reporting.png" alt="link" height="652" width="1195" /></a>
+</p>
+
+<br><br>
+
 <h2><b>Purpose:</b></h2> Describe the format employed to generate bug tickets once they are detected as well to enlist a brief selection of real examples in the Jira platform.
 <br><br>
 
