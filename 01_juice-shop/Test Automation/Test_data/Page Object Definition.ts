@@ -254,7 +254,7 @@ export class Data_Dictionary{
     try {
 
       // Read and parse the JSON file
-      const data = JSON.parse(fs.readFileSync("../01_juice-shop/Test_data/UsersList.json", 'utf8'));
+      const data = JSON.parse(fs.readFileSync("Test_data/UsersList.json", 'utf8'));
 
       // Ensure the data is an array
       if (!Array.isArray(data) || data.length === 0) {
