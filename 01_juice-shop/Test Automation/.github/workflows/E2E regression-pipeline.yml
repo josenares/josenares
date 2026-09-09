@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3.6.0
         with:
-          node-version: 24
+          node-version: 22
           cache: 'npm'
           cache-dependency-path: 01_juice-shop/Test Automation/package-lock.json
 
@@ -45,7 +45,7 @@ jobs:
         run: npx wait-on http://localhost:3000 --timeout 60000
 
       - name: Execute Playwright Regression Suite
-        run: npx playwright test '01_juice-shop/Test Automation/tests/Juice Shop UI Test Specification.spec.ts' --project=chromium --workers=1
+        run: npx playwright test 'tests/Juice Shop UI Test Specification.spec.ts' --project=chromium --workers=1
         env:
           BASE_URL: http://localhost:3000
 
