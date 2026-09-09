@@ -9,7 +9,7 @@ test.beforeAll(async () => {
     
   //Reinitialize users list JSON list every test run
   //Start by adding a default admin user into list.
-    const filePath = path.resolve(__dirname, "../Test_data/UsersList.json")
+    const filePath = "Test_data/UsersList.json"
   // To completely clear the file content:
     await fs.writeFileSync(filePath, JSON.stringify([]));
 
