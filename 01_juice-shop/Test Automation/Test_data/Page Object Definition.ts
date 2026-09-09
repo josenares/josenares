@@ -136,9 +136,9 @@ export class Data_Dictionary{
       
       // Ensure the file exists, if not create an empty array
       let data: UserEntry[] = [];
-      
-      if (fs.existsSync("../01_juice-shop/Test_data/UsersList.json")) {
-        const fileContent = fs.readFileSync("../01_juice-shop/Test_data/UsersList.json", 'utf-8');
+      const filepath = "../01_juice-shop/Test Automation/Test_data/UsersList.json"
+      if (fs.existsSync(filepath)) {
+        const fileContent = fs.readFileSync(filepath, 'utf-8');
         // Handle empty file or invalid JSON gracefully
         data = fileContent.trim() ? JSON.parse(fileContent) : [];
         
@@ -150,15 +150,13 @@ export class Data_Dictionary{
       // Calculate the new ID based on the current number of entries
       const newId = data.length + 1;
 
-      console.log("New user data:\nID:"+newId+"\nEmail:"+email+"\nPassword:"+password+"\nAnswer:"+uniqueAnswer+"\nCapture this information into JSON file manually if registration fails.");
-
       const newEntry: UserEntry = {"id": newId,"email": email,"password": password,"uniqueAnswer": uniqueAnswer};
 
       // Add the new entry to the array
       data.push(newEntry);
 
       // Write the updated array back to the file with pretty formatting
-      fs.writeFileSync("../01_juice-shop/Test_data/UsersList.json", JSON.stringify(data, null, 2), 'utf-8');
+      fs.writeFileSync(filepath, JSON.stringify(data, null, 2), 'utf-8');
 
       console.log(`Successfully added entry with ID: ${newId}`);
 
