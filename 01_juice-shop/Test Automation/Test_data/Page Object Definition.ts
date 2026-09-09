@@ -136,7 +136,7 @@ export class Data_Dictionary{
       
       // Ensure the file exists, if not create an empty array
       let data: UserEntry[] = [];
-      const filepath = "../01_juice-shop/Test Automation/Test_data/UsersList.json"
+      const filepath = "Test_data/UsersList.json"
       if (fs.existsSync(filepath)) {
         const fileContent = fs.readFileSync(filepath, 'utf-8');
         // Handle empty file or invalid JSON gracefully
