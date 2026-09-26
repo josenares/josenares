@@ -3,7 +3,7 @@
 
 <h2 align="left">Connect with me:</h2>
 <p align="left">
-<a href="https://www.linkedin.com/in/jos%C3%A9-javier-nares-jim%C3%A9nez-2b2b84353" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="link" height="30" width="40" /></a><br><br><br><br>
+<a href="https://www.linkedin.com/in/jose-javier-nares-jimenez/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="link" height="30" width="40" /></a><br><br><br><br>
 </p>
 
 
