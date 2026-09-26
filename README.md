@@ -37,7 +37,7 @@ I am a Software Test Engineer with over 9 years of experience with both Web/Mobi
 I have participated in the testing of:
   
   + Vehicle Data Acquisition systems. Verify the system is capable of capturing, processing, uploading, decoding and displaying vehicles data for manufacturers to facilitate data analysis and decision-making processes.
-  + In-vehicle Entertainment systems. Improve end-users experience by extending entertainment systems capabilities
+  + In-vehicle Entertainment systems. Improve end-users experience by extending entertainment systems capabilities.
 
 
 
@@ -56,6 +56,17 @@ Nowadays I'm orienting my efforts to increase the impact of my QA experience and
 
   + Reading QA blogs to catch up with latest tendencies and tools to increase processes effectiveness.
   + Align work processes with this principle: <b>Never let defects get caught by customers</b>.<br><br><br><br>
+
+<h3>PORTFOLIO</h3>
+
+<p align="left">
+<a href="https://www.lincoln.com/technology/lincoln-app/" target="blank"><img align="center" src="https://1000marcas.net/wp-content/uploads/2020/10/logo-Lincoln.png" alt="link" height="100" width="180" /></a><br><br>
+ 
+<a target="blank"><img align="center" src="https://www.cbtnews.com/wp-content/uploads/2020/11/Screen-Shot-2019-05-03-at-3.35.06-PM-287x300.png" alt="link" height="200" width="200" /></a><br><br>
+
+<a target="blank"><img align="center" src="https://logodix.com/logo/21590.png" alt="link" height="50" width="360" /></a><br><br>
+
+<a target="blank"><img align="center" src="https://www.logo.wine/a/logo/Fiat_Chrysler_Automobiles/Fiat_Chrysler_Automobiles-Logo.wine.svg" alt="link" height="160" width="240" /></a><br><br>
 
 <h3 align="left">TECHNICAL SKILLS</h3>
 ___
