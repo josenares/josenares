@@ -59,14 +59,16 @@ Nowadays I'm orienting my efforts to increase the impact of my QA experience and
 
 <h3>PORTFOLIO</h3>
 
+Next there is a list of the customers I have collaborated with by supporting their projects as a QA engineer:
+
 <p align="left">
-<a href="https://www.lincoln.com/technology/lincoln-app/" target="blank"><img align="center" src="https://1000marcas.net/wp-content/uploads/2020/10/logo-Lincoln.png" alt="link" height="100" width="180" /></a><br><br>
+<a href="https://www.lincoln.com/technology/lincoln-app/" target="blank"><img align="center" src="https://cdn.freebiesupply.com/logos/large/2x/lincoln-4-logo-black-and-white.png" alt="link" height="200" width="200" /></a><br><br>
  
 <a target="blank"><img align="center" src="https://www.cbtnews.com/wp-content/uploads/2020/11/Screen-Shot-2019-05-03-at-3.35.06-PM-287x300.png" alt="link" height="200" width="200" /></a><br><br>
 
 <a target="blank"><img align="center" src="https://logodix.com/logo/21590.png" alt="link" height="50" width="360" /></a><br><br>
 
-<a target="blank"><img align="center" src="https://www.logo.wine/a/logo/Fiat_Chrysler_Automobiles/Fiat_Chrysler_Automobiles-Logo.wine.svg" alt="link" height="160" width="240" /></a><br><br>
+<a target="blank"><img align="center" src="https://images.seeklogo.com/logo-png/25/1/fca-fiat-chrysler-automobiles-logo-png_seeklogo-258735.png" alt="link" height="200" width="200" /></a><br><br>
 
 <h3 align="left">TECHNICAL SKILLS</h3>
 ___
