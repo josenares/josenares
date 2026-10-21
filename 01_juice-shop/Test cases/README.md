@@ -15,10 +15,9 @@ For OWASP Juice Shop test designing, I divided the test scope into 4 main featur
   *Purchasing<br><br>
 
   Here, test cases were designed so each component listed above includes happy-path, negative and edge scenarios
-  
+<br><br>
 
 <h2>Real examples of test cases</h2>
-<br><br>
 In this section I've shared an external link which shows real examples of test scenarios for this project in Jira platform.
 <br><br>
 
