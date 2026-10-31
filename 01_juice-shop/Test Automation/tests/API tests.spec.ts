@@ -34,6 +34,7 @@ test('Register a new user', async ({ page, request}) => {
     expect.soft(( Logup_response).status()).toEqual(201)
 
     const json = await Logup_response.json()
+    console.log(json)
 
     expect.soft(json).toHaveProperty("status","success")
     expect.soft(json).toHaveProperty('data.role','customer')
@@ -48,11 +49,56 @@ test('Attempt to add a new user: Email is NULL', async ({ page, request}) => {
     const email = driver.generateRandomUser();//USES CUSTOM FUNCTION TO GENERATE A RANDOM EMAIL
     const password = email.substring(4,12);//USERXYZ12345@TEST.NET => XYZ12345
     const unique_answer = password;
+
+    //Get auth token for GET USERS LIST request
+    let admin_login_response = await driver.request.post("http://localhost:3000/rest/user/login",
+    {
+        headers:{
+            "Accept":"application/json, text/plain, */*",
+            "Accept-Encoding":"gzip, deflate, br, zstd",
+            "Accept-Language":"es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
+            "Content-Type": "application/json",
+            "Cookie":"language=en; welcomebanner_status=dismiss; continueCode=8JvY7eWQm1aKgMpz42wLj6dKJSjjhnQtXRi8jAbXx9RZlk5PyVENDrB3Onoq; cookieconsent_status=dismiss",
+            "Origin":"http://localhost:3000",
+            "Priority":"u=0",
+            "Referer":"http://localhost:3000/"
+        },
+
+        data:{
+            "email": "admin@juice-sh.op",
+            "password": "admin123"
+        }
+
+    })
     
+    let admin_login_json = await admin_login_response.json()
+    let auth_token = "Bearer "+admin_login_json.authentication.token
+
+    //GET USERS LIST PRIOR TO ATTEMPT TO ADD A NULL EMAIL USER
+    const users_list0 = await driver.request.get('http://localhost:3000/api/Users/',
+
+    {
+    headers:{
+      "Accept":"application/json, text/plain, */*",
+      "Accept-Encoding":"gzip, deflate, br, zstd",
+      "Accept-Language":"es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
+      "Authorization": auth_token,
+      "Content-Type": "application/json",
+      "Cookie":"language=en; welcomebanner_status=dismiss; continueCode=8JvY7eWQm1aKgMpz42wLj6dKJSjjhnQtXRi8jAbXx9RZlk5PyVENDrB3Onoq; cookieconsent_status=dismiss",
+      "Origin":"http://localhost:3000",
+      "Priority":"u=0",
+      "Referer":"http://localhost:3000/"
+    }
+    })
+
+    const users_list0_text = await users_list0.text() 
+    expect.soft(users_list0_text).toEqual(expect.not.stringContaining('email\":\"\"'))
+    
+    //VERIFY USER REGISTRATION IS NOT POSSIBLE
     const response = await driver.API_Attempt_Register_a_new_user("",password,password,"Mother's maiden name?",unique_answer)
     expect.soft(response.status()).toEqual(400)
 
-    
+    //VERIFY LOGIN IS REJECTED
     const login_response = await driver.request.post('http://localhost:3000/rest/user/login',
 
     {
@@ -65,7 +111,7 @@ test('Attempt to add a new user: Email is NULL', async ({ page, request}) => {
       "Priority":"u=0",
       "Referer":"http://localhost:3000/"
     },
-
+    
     data:{
         "email": "",
         "password": password,
@@ -73,6 +119,25 @@ test('Attempt to add a new user: Email is NULL', async ({ page, request}) => {
     })
 
     expect.soft(login_response.status()).toEqual(401)
+
+    const users_list = await driver.request.get('http://localhost:3000/api/Users/',
+
+    {
+    headers:{
+      "Accept":"application/json, text/plain, */*",
+      "Accept-Encoding":"gzip, deflate, br, zstd",
+      "Accept-Language":"es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
+      "Authorization": auth_token,
+      "Content-Type": "application/json",
+      "Cookie":"language=en; welcomebanner_status=dismiss; continueCode=8JvY7eWQm1aKgMpz42wLj6dKJSjjhnQtXRi8jAbXx9RZlk5PyVENDrB3Onoq; cookieconsent_status=dismiss",
+      "Origin":"http://localhost:3000",
+      "Priority":"u=0",
+      "Referer":"http://localhost:3000/"
+    }
+    })
+
+    const users_list_text = await users_list.text() 
+    expect.soft(users_list_text).toEqual(expect.not.stringContaining('email\":\"\"'))
 
 });
 
@@ -585,7 +650,10 @@ test('Log in with wrong credentials', async ({ page, request}) => {
         }
 
     })
-  
+
+    //Print negative response
+    await console.log(response)
+
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
 
@@ -612,6 +680,9 @@ test('Log in with wrong credentials', async ({ page, request}) => {
 
     })
 
+    //Print negative response
+    await console.log(response)
+
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
 
@@ -637,6 +708,8 @@ test('Log in with wrong credentials', async ({ page, request}) => {
 
     })
 
+    //Print negative response
+    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -663,6 +736,8 @@ test('Log in with wrong credentials', async ({ page, request}) => {
 
     })
 
+    //Print negative response
+    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -690,6 +765,8 @@ test('Log in with wrong credentials', async ({ page, request}) => {
 
     })
 
+    //Print negative response
+    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -744,6 +821,8 @@ test('Log in with wrong credentials', async ({ page, request}) => {
 
     })
 
+    //Print negative response
+    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -778,6 +857,8 @@ test("Log in attempting to use SQL injection (Line comments ''--')", async ({ pa
 
     })
 
+    //Print negative response
+    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -815,6 +896,8 @@ test("Log in attempting to use SQL injection (Line comments: USERNAME+''#')", as
 
     })
 
+    //Print negative response
+    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
@@ -852,6 +935,8 @@ test("Log in attempting to use SQL injection (Inline comments: USERNAME+''/*')",
 
     })
 
+    //Print negative response
+    await console.log(response)
 
     //Verify response code status is set to 401 (Unauthorized)
     await expect.soft(response.status()).toEqual(401);
