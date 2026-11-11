@@ -13,11 +13,11 @@ Hello there!
 
 This is José Javier Nares. Thank you so much for taking a few minutes to look at my space. There you will find different projects I have been working for, so I showcase my abilities as QA Engineer at different areas including Automation, Test design techniques and Test Management.
 
-This repository is divided into different project folders. Each of them includes different testing types such as functional, API, load and security testing according to product purposes. 
+This repository is divided into different project folders. Each of them includes different testing types such as functional, API and security testing according to product purposes. 
 
-I hope you find your visit to this repository enjoyable. I'm putting my best to make it as clear and delightful as I can.
+--I hope you find your visit to this repository enjoyable. I'm putting my best to make it as clear and delightful as I can.
 
-Happy walkthrough!<br><br><br><br>
+--Happy walkthrough!<br><br><br><br>
 
 
 <b><h3>TABLE OF CONTENTS</b></h3>
@@ -34,28 +34,12 @@ ___
 
 
 I am a Software Test Engineer with over 9 years of experience with both Web/Mobile testing as well as Embedded Software testing.
-I have participated in the testing of:
+During that time I have supported different projects such as:
   
   + Vehicle Data Acquisition systems. Verify the system is capable of capturing, processing, uploading, decoding and displaying vehicles data for manufacturers to facilitate data analysis and decision-making processes.
   + In-vehicle Entertainment systems. Improve end-users experience by extending entertainment systems capabilities.
 
 
-
-In 2020 I took the QA leadership of a few ongoing projects and with it I:
-
-  + Took responsibility for a small team of QA engineers.
-  + Planned and assigned test executions.
-  + Delivered test reports to managers from other competencies.
-  
-
-
-In 2025 I mentored a small QA Engineering team from India about QA processes, tools and good practices.
-
-  
-Nowadays I'm orienting my efforts to increase the impact of my QA experience and knowledge. 
-
-  + Reading QA blogs to catch up with latest tendencies and tools to increase processes effectiveness.
-  + Align work processes with this principle: <b>Never let defects get caught by customers</b>.<br><br><br><br>
 
 <h3>PORTFOLIO</h3>
 
@@ -110,7 +94,7 @@ As part of my previous experience, test activities such as planning, designing a
         QA team availability
         
       
-<h4 align="left">Black Box oriented test design</h4> 
+<h4 align="left">Black Box-specialized test design</h4> 
 
 <h4 align="left">Requirements analysis</h4> <br><br><br><br>
 
